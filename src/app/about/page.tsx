@@ -34,6 +34,7 @@ import {
   SiVisualstudiocode,
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
+import Image from "next/image";
 
 // @ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -244,10 +245,13 @@ function Page() {
           >
             <div className="flex flex-row lg:flex-col items-center">
               <div className="flex justify-center items-center lg:w-full lg:aspect-square bg-zinc-800 rounded-xl lg:mb-5">
-                <img
-                  className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square  bg-zinc-800"
-                  alt="me"
+                <Image
+                  className="rounded-full p-4 lg:p-10 w-[100px] md:w-[150px] lg:w-[200px] aspect-square bg-zinc-800"
+                  alt="Profile picture"
                   src="/assets/me.jpg"
+                  width={200}
+                  height={200}
+                  priority
                 />
               </div>
               <div className="flex flex-col gap-3 lg:items-center ml-10 md:ml-20 lg:ml-0">
@@ -287,10 +291,10 @@ function Page() {
           >
             <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
             <p className="mb-10 text-roboto">
-              Hey there! I'm Aravind, an AI-powered Full Stack Developer with hands-on experience in building intelligent web applications using the MERN stack and modern DevOps practices. Over the past year, I’ve worked on developing scalable apps, integrating AI models, and collaborating with diverse teams to deliver innovative solutions. I enjoy blending code with creativity to solve real-world problems.
+              Hey there! I'm Aravind, an AI-powered Full Stack Developer with hands-on experience in building intelligent web applications using the MERN stack and modern DevOps practices. Over the past year, I've worked on developing scalable apps, integrating AI models, and collaborating with diverse teams to deliver innovative solutions. I enjoy blending code with creativity to solve real-world problems.
             </p>
             <p className="mb-10">
-              When I’m not coding, you’ll find me exploring new AI tools, working on passion projects, diving into open-source contributions, or sipping filter coffee while sketching ideas for my next tech innovation.
+              When I'm not coding, you'll find me exploring new AI tools, working on passion projects, diving into open-source contributions, or sipping filter coffee while sketching ideas for my next tech innovation.
             </p>
             <h1 className="text-3xl mb-10 lg:md-20">Tech I Love Working With</h1>
 
