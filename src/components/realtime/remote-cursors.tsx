@@ -39,7 +39,7 @@ const RemoteCursors = () => {
     return () => {
       socket.off("cursor-changed");
     };
-  }, [socket, isMobile]);
+  }, [socket, isMobile, setUsers]);
   const handleMouseMove = useThrottle((x, y) => {
     socket?.emit("cursor-change", {
       pos: { x, y },
@@ -49,7 +49,7 @@ const RemoteCursors = () => {
   useEffect(() => {
     if (isMobile) return;
     handleMouseMove(x, y);
-  }, [x, y, isMobile]);
+  }, [x, y, isMobile, handleMouseMove]);
   const users = Array.from(_users.values());
   return (
     <div className="h-0 z-10 relative">
@@ -111,7 +111,7 @@ const Cursor = ({
         // setShowText(false);
       }, timeToRead);
     }
-  }, [msgs]);
+  }, [msgs, socketId]);
 
   return (
     <motion.div

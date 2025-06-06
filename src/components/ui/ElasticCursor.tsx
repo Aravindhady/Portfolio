@@ -92,7 +92,7 @@ function ElasticCursor() {
     set.sx = gsap.quickSetter(jellyRef.current, "scaleX");
     set.sy = gsap.quickSetter(jellyRef.current, "scaleY");
     set.width = gsap.quickSetter(jellyRef.current, "width", "px");
-  }, []);
+  }, [set]);
 
   // Start Animation loop
   const loop = useCallback(() => {
@@ -112,7 +112,7 @@ function ElasticCursor() {
     } else {
       set.r(0);
     }
-  }, [isHovering, isLoading]);
+  }, [isHovering, isLoading, set, pos.x, pos.y, vel.x, vel.y]);
 
   const [cursorMoved, setCursorMoved] = useState(false);
   // Run on Mouse Move
@@ -177,7 +177,7 @@ function ElasticCursor() {
     return () => {
       if (!isLoading) window.removeEventListener("mousemove", setFromEvent);
     };
-  }, [isLoading]);
+  }, [isLoading, isMobile, cursorMoved, loop, pos, vel]);
 
   useEffect(() => {
     if (!jellyRef.current) return;

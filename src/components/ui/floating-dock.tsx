@@ -102,6 +102,7 @@ const FloatingDockDesktop = ({
   const timer = useRef<NodeJS.Timeout>();
   const controls = useAnimation();
   useEffect(() => {
+    const currentTimer = timer.current;
     if (showHint) {
       controls.start({
         opacity: [0, 1, 1, 0],
@@ -120,9 +121,11 @@ const FloatingDockDesktop = ({
     }
     return () => {
       controls.stop();
-      clearInterval(timer.current);
+      if (currentTimer) {
+        clearInterval(currentTimer);
+      }
     };
-  }, [showHint]);
+  }, [showHint, controls]);
   return (
     <div className="relative h-fit flex items-center justify-center">
       <motion.div

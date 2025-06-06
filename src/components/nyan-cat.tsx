@@ -7,6 +7,7 @@ import {
   animate,
   useAnimationControls,
 } from "framer-motion";
+import Image from "next/image";
 
 const getRandomHeight = () => {
   return `${Math.random() * 100}vh`;
@@ -77,7 +78,7 @@ const AnimatedDiv = ({
       y: randY,
       transition: { duration: 5, ease: "linear" },
     });
-  }, [controls]);
+  }, [controls, randY]);
 
   const handlePause = () => {
     onClick();
@@ -91,10 +92,13 @@ const AnimatedDiv = ({
       onAnimationComplete={onCompleted}
       onClick={handlePause}
     >
-      <img
+      <Image
         src="/assets/nyan-cat.gif"
         className={cn("fixed z-10 h-40 w-auto")}
         alt="Nyan Cat"
+        width={160}
+        height={160}
+        unoptimized
       />
     </motion.div>
   );

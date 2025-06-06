@@ -242,7 +242,7 @@ const PROJECT_SKILLS = {
     title: "OpenAI",
     bg: "black",
     fg: "white",
-    icon: <img src="assets/icons/openai-svgrepo-com_white.svg" alt="OpenAI"/>,
+    icon: <Image src="/assets/icons/openai-svgrepo-com_white.svg" alt="OpenAI" width={50} height={50} />,
   },
   netlify: {
     title: "Netlify",
@@ -278,7 +278,7 @@ const PROJECT_SKILLS = {
     title: "Java",
     bg: "black",
     fg: "white",
-    icon: <img src="assets/icons/icons8-java.svg" alt="Java"/>,
+    icon: <Image src="/assets/icons/icons8-java.svg" alt="Java" width={50} height={50} />,
   },
   cplusplus: {
     title: "C++",
@@ -1053,7 +1053,7 @@ const projects: Project[] = [
             Step into the digital world of Savinder Puri, the beloved DevOps guru and Spiritual 
             Alchemist, with this responsive portfolio website. 🌐✨ Explore his inspiring journey, 
             milestones, and life-changing services blending tech and spirituality. Built with 
-            modern tools like React and TypeScript, it’s a heartfelt tribute to a mentor who 
+            modern tools like React and TypeScript, it&apos;s a heartfelt tribute to a mentor who 
             transforms lives. 💻🕊️ Crafted with ❤️ by Abhijit Zende! 🚀
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
