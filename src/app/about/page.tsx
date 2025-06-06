@@ -253,7 +253,7 @@ function Page() {
               <div className="flex flex-col gap-3 lg:items-center ml-10 md:ml-20 lg:ml-0">
                 <p className="text-center text-xl">Naresh Khatri</p>
                 <div className="text-xs bg-zinc-700 w-fit px-3 py-1 rounded-full">
-                  Web Developer
+                  AI ✕ Full Stack Innovator
                 </div>
               </div>
             </div>
@@ -287,17 +287,13 @@ function Page() {
           >
             <h1 className="text-3xl mb-10 lg:md-20">About me</h1>
             <p className="mb-10 text-roboto">
-              Hey there! I&apos;m Abhijit, a Comp. Sci. Engineer with 1.5 year experience in Devlopment, DevOps and 
-              Database management with hands-on experience in deploying & automating workflows, and 
-              collaborating with foreign clients. Strong analytical skills,effective communication,
-              and a team-oriented approach to driving process improvements and delivering results.
+              Hey there! I'm Aravind, an AI-powered Full Stack Developer with hands-on experience in building intelligent web applications using the MERN stack and modern DevOps practices. Over the past year, I’ve worked on developing scalable apps, integrating AI models, and collaborating with diverse teams to deliver innovative solutions. I enjoy blending code with creativity to solve real-world problems.
             </p>
             <p className="mb-10">
-              When I&apos;m not coding, you can find me [Your
-              Interests/Hobbies], exploring new technologies, or sipping coffee
-              while brainstorming my next project.
+              When I’m not coding, you’ll find me exploring new AI tools, working on passion projects, diving into open-source contributions, or sipping filter coffee while sketching ideas for my next tech innovation.
             </p>
-            <h1 className="text-3xl mb-10 lg:md-20">Stuff I use</h1>
+            <h1 className="text-3xl mb-10 lg:md-20">Tech I Love Working With</h1>
+
             <div className="mb-5">
               {!toolsLoaded ? (
                 <p className="h-[100px]"></p>
