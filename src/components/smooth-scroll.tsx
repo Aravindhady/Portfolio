@@ -1,40 +1,38 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { ReactLenis, useLenis } from "@/lib/lenis";
+import Lenis from "lenis";
 
-interface LenisProps {
-  children: React.ReactNode;
-  isInsideModal?: boolean;
-}
-
-function SmoothScroll({ children, isInsideModal = false }: LenisProps) {
-  const lenis = useLenis(({ scroll }) => {
-    // called every scroll
-  });
-
+const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
-    document.addEventListener("DOMContentLoaded", () => {
-      lenis?.stop();
-      lenis?.start();
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
     });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Add passive event listeners
+    const wheelOptions = { passive: true };
+    const touchOptions = { passive: true };
+
+    window.addEventListener("wheel", () => {}, wheelOptions);
+    window.addEventListener("touchmove", () => {}, touchOptions);
+
+    return () => {
+      lenis.destroy();
+      window.removeEventListener("wheel", () => {});
+      window.removeEventListener("touchmove", () => {});
+    };
   }, []);
 
-  return (
-    <ReactLenis
-      root
-      options={{
-        duration: 2,
-        prevent: (node) => {
-          if (isInsideModal) return true;
-          const modalOpen = node.classList.contains("modall");
-          return modalOpen;
-        },
-      }}
-    >
-      {children}
-    </ReactLenis>
-  );
-}
+  return <>{children}</>;
+};
 
 export default SmoothScroll;

@@ -14,12 +14,52 @@ const ContactForm = () => {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [errors, setErrors] = React.useState<{
+    fullName?: string;
+    email?: string;
+    message?: string;
+  }>({});
 
   const { toast } = useToast();
   const router = useRouter();
 
+  const validateForm = () => {
+    const newErrors: {
+      fullName?: string;
+      email?: string;
+      message?: string;
+    } = {};
+
+    if (fullName.length < 2) {
+      newErrors.fullName = "Full name must be at least 2 characters long";
+    }
+
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (message.length < 10) {
+      newErrors.message = "Message must be at least 10 characters long";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please check the form fields and try again.",
+        variant: "destructive",
+        className: cn(
+          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+        ),
+      });
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("/api/send", {
@@ -45,6 +85,7 @@ const ContactForm = () => {
       setFullName("");
       setEmail("");
       setMessage("");
+      setErrors({});
       const timer = setTimeout(() => {
         router.push("/");
         clearTimeout(timer);
@@ -61,6 +102,7 @@ const ContactForm = () => {
     }
     setLoading(false);
   };
+
   return (
     <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit}>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
@@ -72,8 +114,16 @@ const ContactForm = () => {
             type="text"
             required
             value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(e) => {
+              setFullName(e.target.value);
+              if (errors.fullName) {
+                setErrors((prev) => ({ ...prev, fullName: undefined }));
+              }
+            }}
           />
+          {errors.fullName && (
+            <p className="text-sm text-red-500 mt-1">{errors.fullName}</p>
+          )}
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
@@ -83,8 +133,16 @@ const ContactForm = () => {
             type="email"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (errors.email) {
+                setErrors((prev) => ({ ...prev, email: undefined }));
+              }
+            }}
           />
+          {errors.email && (
+            <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+          )}
         </LabelInputContainer>
       </div>
       <div className="grid w-full gap-1.5 mb-4">
@@ -94,8 +152,16 @@ const ContactForm = () => {
           id="content"
           required
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => {
+            setMessage(e.target.value);
+            if (errors.message) {
+              setErrors((prev) => ({ ...prev, message: undefined }));
+            }
+          }}
         />
+        {errors.message && (
+          <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+        )}
         <p className="text-sm text-muted-foreground">
           I&apos;ll never share your data with anyone else. Pinky promise!
         </p>

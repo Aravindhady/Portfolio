@@ -20,16 +20,11 @@ const BUTTONS = [
     icon: <SiLinkedin size={"24"} color={"#fff"} />,
   },
   {
-    name: "Twitter",
-    href: config.social.twitter,
-    icon: <SiTwitter size={"24"} color={"#fff"} />,
-  },
-  {
     name: "Instagram",
     href: config.social.instagram,
     icon: <SiInstagram size={"24"} color={"#fff"} />,
   },
-];
+].filter(button => button.href); // Only include buttons with defined href
 
 const SocialMediaButtons = () => {
   const ref = useRef<HTMLDivElement>(null);

@@ -564,9 +564,8 @@ const AnimatedBackground = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Spline
           ref={splineContainer}
-          onLoad={(app: Application) => {
+          onLoad={(app) => {
             setSplineApp(app);
-            bypassLoading();
           }}
           scene="/assets/skills-keyboard.spline"
         />
